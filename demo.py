@@ -59,12 +59,13 @@ while True:
     data = control_logic()
     now = time.time()
     if now - last_send >= SEND_INTERVAL:
-        # map fields to ThingSpeak field1..4
+        # map fields to ThingSpeak field1..5 (added buzzer to field5)
         fields = {
             "field1": data["distance_cm"],
             "field2": data["ldr"],
             "field3": data["pump"],
             "field4": data["led"],
+            "field5": data["buzzer"],  # Added buzzer status to data sent
         }
         ok = send_to_thingspeak(fields)
         last_send = now
